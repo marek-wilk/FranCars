@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace FranCars.Shared.Data
+namespace FranCars.Shared.Models
 {
     public class Warehouse
     {

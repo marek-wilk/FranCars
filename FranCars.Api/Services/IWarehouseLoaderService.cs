@@ -1,5 +1,5 @@
-﻿using FranCars.Shared.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FranCars.Shared.Models;
 
 namespace FranCars.Api.Services
 {

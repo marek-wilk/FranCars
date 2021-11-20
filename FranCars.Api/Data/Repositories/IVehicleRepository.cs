@@ -1,4 +1,4 @@
-﻿using FranCars.Shared.Data;
+﻿using FranCars.Shared.Models;
 using System.Collections.Generic;
 
 namespace FranCars.Api.Data.Repositories

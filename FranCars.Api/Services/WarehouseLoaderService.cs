@@ -1,4 +1,4 @@
-﻿using FranCars.Shared.Data;
+﻿using FranCars.Shared.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace FranCars.Api.Services
     {
         public List<Warehouse> LoadFromFile()
         {
-            var path = $"{Environment.CurrentDirectory}/Files/warehouses.json";
+            var path = $"{Environment.CurrentDirectory}/warehouses.json";
             List<Warehouse> warehouses;
             
             using (var file = File.OpenText(path))

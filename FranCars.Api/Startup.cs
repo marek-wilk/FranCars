@@ -26,6 +26,7 @@ namespace FranCars.Api
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddCors();
             services.AddControllers();
             services.AddTransient<IWarehouseLoaderService, WarehouseLoaderService>();
             services.AddTransient<IVehicleRepository, VehicleRepository>();
@@ -45,7 +46,10 @@ namespace FranCars.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FranCars.Api v1"));
             }
 
-            app.UseHttpsRedirection();
+            app.UseCors(opt => opt
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true));
 
             app.UseRouting();
 

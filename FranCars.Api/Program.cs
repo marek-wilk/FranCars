@@ -21,6 +21,7 @@ namespace FranCars.Api
                     var services = scope.ServiceProvider;
                     var context = services.GetRequiredService<AppDbContext>();
 
+                    context.Database.EnsureCreated();
                     context.Database.Migrate();
                     Seeder.SeedData(context);
                 }

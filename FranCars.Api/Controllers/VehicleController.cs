@@ -1,7 +1,8 @@
 ﻿using FranCars.Api.Data.Repositories;
-using FranCars.Shared.Data;
+using FranCars.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FranCars.Api.Controllers
 {
@@ -17,9 +18,9 @@ namespace FranCars.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Vehicle> GetVehicles()
+        public List<Vehicle> GetVehicles()
         {
-            return _vehicleRepository.GetVehicles();
+            return _vehicleRepository.GetVehicles().OrderBy(x => x.DateAdded).ToList();
         }
     }
 }

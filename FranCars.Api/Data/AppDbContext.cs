@@ -1,4 +1,4 @@
-﻿using FranCars.Shared.Data;
+﻿using FranCars.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FranCars.Api.Data
