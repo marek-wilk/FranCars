@@ -1,21 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FranCars.Shared.Models
 {
     public class Warehouse
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonPropertyName("_id")]
+        [Key]
         public int Id { get; set; }
 
-        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("location")]
+        [JsonProperty(PropertyName = "location")]
         public Location Location { get; set; }
 
-        [JsonPropertyName("cars")]
+        [JsonProperty(PropertyName = "cars")]
         public Cars Cars { get; set; }
     }
 }

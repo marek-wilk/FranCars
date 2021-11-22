@@ -15,12 +15,12 @@ namespace FranCars.Api.Data.Repositories
 
         public IEnumerable<Vehicle> GetVehicles()
         {
-            return _context.Vehicles.ToList();
+            return _context.Vehicles;
         }
 
         public Vehicle GetVehicleById(int id)
         {
-            return _context.Vehicles.First(v => v.Id == id);
+            return _context.Vehicles.First(v => v.VehicleId == id);
         }
     }
 }

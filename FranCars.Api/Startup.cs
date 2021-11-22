@@ -30,6 +30,8 @@ namespace FranCars.Api
             services.AddControllers();
             services.AddTransient<IWarehouseLoaderService, WarehouseLoaderService>();
             services.AddTransient<IVehicleRepository, VehicleRepository>();
+            services.AddTransient<IWarehouseRepository, WarehouseRepository>();
+            services.AddTransient<IVehicleViewModelFactory, VehicleViewModelFactory>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FranCars.Api", Version = "v1" });
