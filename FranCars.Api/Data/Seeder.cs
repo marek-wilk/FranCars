@@ -13,6 +13,7 @@ namespace FranCars.Api.Data
                 context.Database.Migrate();
             }
 
+            //Seeding initial data
             if (!context.Warehouses.Any())
             {
                 var data = new WarehouseLoaderService().LoadFromFile();

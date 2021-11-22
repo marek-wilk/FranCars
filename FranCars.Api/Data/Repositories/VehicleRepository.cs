@@ -13,6 +13,9 @@ namespace FranCars.Api.Data.Repositories
             _context = context;
         }
 
+        //Get all vehicles from database
+        //I used IEnumarable because we can use deferred LinQ methods like Where() or Select()
+        //Which boosts performance for big databases, maybe not exactly for this one though.
         public IEnumerable<Vehicle> GetVehicles()
         {
             return _context.Vehicles;

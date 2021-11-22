@@ -8,6 +8,7 @@ namespace FranCars.Api.Services
 {
     public class WarehouseLoaderService : IWarehouseLoaderService
     {
+        //Loads data from json and deserializes it
         public List<Warehouse> LoadFromFile()
         {
             var path = $"{Environment.CurrentDirectory}/warehouses.json";

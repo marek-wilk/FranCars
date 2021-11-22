@@ -15,11 +15,20 @@ namespace FranCars.Api.Services
             _warehouseRepository = warehouseRepository;
         }
 
+        //Creates VehicleViewModel used in Details component
         public VehicleViewModel CreateVehicleViewModel(int vehicleId)
         {
             var vehicle = _vehicleRepository.GetVehicleById(vehicleId);
-            var warehouse = _warehouseRepository.GetWarehouses()
-                .FirstOrDefault(w => w.Cars.Vehicles.Contains(vehicle));
+
+            //Finding warehouse in which vehicle with corresponding Id is stored
+            //I used Exists instead of Contains because with Contains test was not passing
+            //I am not sure if it was not due to Mock, but I'd like to know why Contains()
+            //Work when app is running and why it is not working during unit tests
+            var warehouse = _warehouseRepository
+                .GetWarehouses()
+                .ToList()
+                .FirstOrDefault(w => w.Cars.Vehicles
+                    .Exists(x => x.VehicleId == vehicleId));
 
             var vehicleViewModel = new VehicleViewModel
             {
