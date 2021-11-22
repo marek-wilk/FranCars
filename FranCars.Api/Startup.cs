@@ -30,6 +30,8 @@ namespace FranCars.Api
             services.AddControllers();
             services.AddTransient<IWarehouseLoaderService, WarehouseLoaderService>();
             services.AddTransient<IVehicleRepository, VehicleRepository>();
+            services.AddTransient<IWarehouseRepository, WarehouseRepository>();
+            services.AddTransient<IVehicleViewModelFactory, VehicleViewModelFactory>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FranCars.Api", Version = "v1" });
@@ -46,6 +48,9 @@ namespace FranCars.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FranCars.Api v1"));
             }
 
+            //I had trouble with WithOrigin() method. Even if I specified the origin
+            //of my frontend build, fetch was failing no matter what. That's why
+            //I allow requests from any origin. I think it is a security flaw on my side
             app.UseCors(opt => opt
                 .AllowAnyMethod()
                 .AllowAnyHeader()

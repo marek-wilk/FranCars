@@ -1,20 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FranCars.Shared.Models
 {
     public class Location
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Warehouse")]
+        [JsonProperty(PropertyName = "lat")]
+        public double Latitude { get; set; }
+
+        [JsonProperty(PropertyName = "long")]
+        public double Longitude { get; set; }
+
+        [ForeignKey("Warehouses")]
         public int WarehouseId { get; set; }
 
-        [JsonPropertyName("lat")]
-        public string Latitude { get; set; }
-
-        [JsonPropertyName("long")]
-        public string Longitude { get; set; }
+        public Warehouse Warehouse { get; set; }
     }
 }

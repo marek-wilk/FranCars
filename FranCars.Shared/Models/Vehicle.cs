@@ -1,30 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FranCars.Shared.Models
 {
     public class Vehicle
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonPropertyName("_id")]
-        public int Id { get; set; }
+        public int VehicleId { get; set; }
 
-        [JsonPropertyName("make")]
         public string Make { get; set; }
 
-        [JsonPropertyName("model")]
         public string Model { get; set; }
         
-        [JsonPropertyName("year_model")]
-        public string YearModel { get; set; }
+        [JsonProperty(PropertyName = "year_model")]
+        public int YearModel { get; set; }
 
-        [JsonPropertyName("price")]
-        public string Price { get; set; }
+        public double Price { get; set; }
 
-        [JsonPropertyName("licensed")]
         public bool Licensed { get; set; }
 
-        [JsonPropertyName("date_added")]
-        public string DateAdded { get; set; }
+        [JsonProperty(PropertyName = "date_added")]
+        public DateTime DateAdded { get; set; }
     }
 }
