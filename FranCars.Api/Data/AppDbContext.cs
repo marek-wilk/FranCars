@@ -16,5 +16,26 @@ namespace FranCars.Api.Data
         public DbSet<Location> Locations { get; set; }
 
         public DbSet<Vehicle> Vehicles { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        public DbSet<ShoppingItem> ShoppingItems { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
+            modelBuilder.Entity<ShoppingCart>()
+                .HasMany(sc => sc.ShoppingItems)
+                .WithOne(si => si.ShoppingCart)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

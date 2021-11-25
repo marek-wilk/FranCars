@@ -31,6 +31,8 @@ namespace FranCars.Api
             services.AddTransient<IWarehouseLoaderService, WarehouseLoaderService>();
             services.AddTransient<IVehicleRepository, VehicleRepository>();
             services.AddTransient<IWarehouseRepository, WarehouseRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IVehicleViewModelFactory, VehicleViewModelFactory>();
             services.AddSwaggerGen(c =>
             {
@@ -54,6 +56,7 @@ namespace FranCars.Api
             app.UseCors(opt => opt
                 .AllowAnyMethod()
                 .AllowAnyHeader()
+                .AllowCredentials()
                 .SetIsOriginAllowed(origin => true));
 
             app.UseRouting();
