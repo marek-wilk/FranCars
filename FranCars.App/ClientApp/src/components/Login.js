@@ -9,7 +9,7 @@ const Login = (props) => {
     const submit = async (e) => {
         e.preventDefault();
 
-        await fetch('http://localhost:18350/auth/login', {
+        const response = await fetch('http://localhost:18350/auth/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -18,11 +18,9 @@ const Login = (props) => {
                 password
             })
         });
+        const content = await response.json()
         setRedirect(true);
-    }
-
-    const rerender = (email) => {
-        props.stateChanged(email)
+        props.setId(content.id)
     }
 
     if(redirect) {

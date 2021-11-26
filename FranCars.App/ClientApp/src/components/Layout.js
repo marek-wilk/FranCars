@@ -8,7 +8,7 @@ export class Layout extends Component {
   render () {
     return (
       <div>
-        <NavMenu email={this.props.email}/>
+        <NavMenu setId={() => this.props.setId()}/>
         <Container>
           {this.props.children}
         </Container>

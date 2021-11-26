@@ -30,12 +30,6 @@ namespace FranCars.Api.Data
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
-
-            modelBuilder.Entity<ShoppingCart>()
-                .HasMany(sc => sc.ShoppingItems)
-                .WithOne(si => si.ShoppingCart)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

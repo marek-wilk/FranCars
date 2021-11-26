@@ -33,7 +33,7 @@ export class NavMenu extends Component {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <AuthContext.Consumer>
                 {value => 
-                <NavLogin email={value}/>
+                <NavLogin id={value} setId={() => this.props.setId()}/>
                 }
               </AuthContext.Consumer>
             </Collapse>

@@ -5,6 +5,7 @@ using FranCars.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace FranCars.Api.Controllers
 {
@@ -28,7 +29,8 @@ namespace FranCars.Api.Controllers
             {
                 Name = dto.Name,
                 Email = dto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                ShoppingCart = new ShoppingCart { ShoppingItems = new List<ShoppingItem>() }
             };
 
             return Created("success", _userRepository.Create(user));

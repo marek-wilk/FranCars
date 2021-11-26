@@ -6,11 +6,12 @@ import Details from './components/Details';
 import Login from './components/Login'
 import Register from './components/Register';
 import AuthContext from  './components/AuthContext'
+import Cart from './components/Cart'
 
 import './custom.css'
 
 const App = () => {
-  const [email, setEmail] = useState('');
+  const [id, setId] = useState(0);
     
   useEffect(() => {
     (
@@ -20,29 +21,33 @@ const App = () => {
         credentials: 'include'
       })
       const content = await response.json()
-      if(typeof content.email === 'undefined') {
-        setEmail('')
+      if(typeof content.id === 'undefined') {
+        setId(0)
+        console.log(`I fired: ${id}`)
       } else {
-        setEmail(content.email)
+        setId(content.id)
       }
     }
     )()
   })
 
   return (
-    <AuthContext.Provider value={email}>
-      <Layout>
+    <AuthContext.Provider value={id}>
+      <Layout setId={() => setId()}>
         <Route exact path='/'>
           <Vehicles />
         </Route>
         <Route path='/details/:id'>
-          <Details />
+          <Details id={id}/>
         </Route>
-        <Route path='/login'>
-          <Login />
+        <Route path='/login' >
+          <Login setId={() => setId()}/>
         </Route>
         <Route path='/register'>
           <Register />
+        </Route>
+        <Route path="/cart/:id">
+          <Cart />
         </Route>
       </Layout>
     </AuthContext.Provider>

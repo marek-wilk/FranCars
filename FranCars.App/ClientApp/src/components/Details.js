@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom'
 import Map from './Map'
 
 
@@ -15,6 +16,19 @@ class Details extends Component {
     }
 
     render() {
+        const addItemToCart = async () => {
+            await fetch(`http://localhost:18350/shoppingCart/addItem`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id, 
+                    make, 
+                    model, 
+                    price
+                })
+            })
+        }
+
         if(this.state.loading) {
             return <h2>loading ... </h2>;
         }
@@ -27,8 +41,22 @@ class Details extends Component {
             locationName,
             longitude,
             latitude,
-            warehouseName
+            warehouseName,
+            id = this.props.id
         } = this.state;
+
+        const renderButton = () => {
+            console.log(`id at details: ${id}`)
+            if(id === 0) {
+                return (
+                    <Link to="/login">Please login to continue shopping</Link>
+                )
+            } else {
+                return (
+                    <button className="w-20 btn btn-lg btn-primary" onClick={() => addItemToCart(id, make, model, price)}>Add to cart {price}</button>
+                )
+            }
+        }
 
         return (
             <div className="details">
@@ -44,6 +72,7 @@ class Details extends Component {
                         warehouseName={warehouseName}/>
                     </div>
                 </div>
+                {renderButton()}
             </div>
         );
     }

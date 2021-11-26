@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace FranCars.Shared.Models
 {
@@ -7,10 +8,14 @@ namespace FranCars.Shared.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [JsonPropertyName("productName")]
         public string ProductName { get; set; }
-
+        
+        [JsonPropertyName("price")]
         public double Price { get; set; }
 
-        public ShoppingCart ShoppingCart { get; set; }
+        [JsonIgnore]
+        [ForeignKey("ShoppingCarts")]
+        public int ShoppingCartId { get; set; }
     }
 }

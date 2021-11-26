@@ -33,6 +33,8 @@ namespace FranCars.Api
             services.AddTransient<IVehicleRepository, VehicleRepository>();
             services.AddTransient<IWarehouseRepository, WarehouseRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddTransient<IShoppingItemRepository, ShoppingItemRepository>();
             services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IVehicleViewModelFactory, VehicleViewModelFactory>();
             services.AddSwaggerGen(c =>
