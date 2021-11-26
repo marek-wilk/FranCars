@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import NavLogin from './NavLogin'
 import './NavMenu.css';
+import AuthContext from './AuthContext';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -29,8 +31,11 @@ export class NavMenu extends Component {
             <NavbarBrand tag={Link} to="/">FranCars.App</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-              </ul>
+              <AuthContext.Consumer>
+                {value => 
+                <NavLogin email={value}/>
+                }
+              </AuthContext.Consumer>
             </Collapse>
           </Container>
         </Navbar>
