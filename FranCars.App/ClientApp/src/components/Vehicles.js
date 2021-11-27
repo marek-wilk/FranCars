@@ -35,7 +35,7 @@ const Vehicles = () => {
       </thead>
       <tbody>
         {vehiclesData.map(vehicle =>
-          <tr key={vehicle.dateAdded}>
+          <tr key={vehicle.vehicleId}>
             <td>{vehicle.make}</td>
             <td>{vehicle.model}</td>
             <td>{vehicle.yearModel}</td>

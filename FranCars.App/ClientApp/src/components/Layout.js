@@ -8,7 +8,7 @@ export class Layout extends Component {
   render () {
     return (
       <div>
-        <NavMenu />
+        <NavMenu setId={() => this.props.setId()}/>
         <Container>
           {this.props.children}
         </Container>

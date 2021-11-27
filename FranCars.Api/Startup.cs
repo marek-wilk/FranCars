@@ -3,6 +3,7 @@ using FranCars.Api.Data.Repositories;
 using FranCars.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,10 @@ namespace FranCars.Api
             services.AddTransient<IWarehouseLoaderService, WarehouseLoaderService>();
             services.AddTransient<IVehicleRepository, VehicleRepository>();
             services.AddTransient<IWarehouseRepository, WarehouseRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddTransient<IShoppingItemRepository, ShoppingItemRepository>();
+            services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IVehicleViewModelFactory, VehicleViewModelFactory>();
             services.AddSwaggerGen(c =>
             {
@@ -54,6 +59,7 @@ namespace FranCars.Api
             app.UseCors(opt => opt
                 .AllowAnyMethod()
                 .AllowAnyHeader()
+                .AllowCredentials()
                 .SetIsOriginAllowed(origin => true));
 
             app.UseRouting();
