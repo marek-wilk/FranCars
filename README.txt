@@ -1,21 +1,15 @@
-Hello Dear Recruiter!
+This is web app that represents second hand car shop.
+This app:
+* Reads Warehouse and Vehicles related data from file and saves it to database
+* API Endpoints: 
+  - [GET] /vehicle - returns all vehicles
+  - [GET] /vehicle/{id} - returns VehicleViewModel by vehicle id
+  - [GET] /shoppingCart/userId={userId} - returns cart of a user with specified Id
+  - [POST] /shoppingCart/addItem - adds item to the cart
+  - [POST] /auth/register - creates new user
+  - [POST] /auth/login - gets user from repository by email, verifies password using BCrypt then generates jwt and appends it to newly created cookie
+  - [GET] /auth/user - verifies jwt, gets user Id from inside, then gets user from repository and returns them
+  - [DELETE] /auth/logout - removes cookie together with jwt
+* React app shows all the Vehicles in the table on the main site. You can log in, check details of vehicles (alongside warehouse location on the map it is stored in), add them to cart and check your cart
 
-I decided to write README instead of writing comments here and there because I would struggle with keeping them short and I wanted to thoroughly explain why I decided to do some things the way I did them. 
-[DISCLAIMER] this txt will be a wall of text, so I will understand if you decide not to read further.
-
-First of all - thank you very much for your patience and giving me more time, unfortunately I will apologize right away because due to the pressure I decided to skip writing the rest of tests. It's 1AM GMT+1 Saturday right now, when I'm writing this readme, so I have really used up your kindness and additional time you gave me, that's why I decided to stop when I made sure the program is functional. This 'made sure' means 'I tested manually basic functionality and it shouldn't explode... probably'. Anyway tests would took me some time, especially the ones that would test React Components because it's my first React App (excluding the one I have been writing while watching course about react) and I experienced many different problems throughout the time I was writing the code, so that's why I don't even want to give it a try right now - I am exhausted because of past few days of not sleeping much to get this done, I know that even the fundamental things from react and js still are problematic for me sometimes, and it really took me a long time because of one problem - simple fetch(). Well the problem was complex because it wasn't the fetch's fault at all from the very beginning, but I was looking there for fault and I tried tons of various solutions posted on the internet, just to broke my fetch() while trying to repair it. And because of this I lost a lot of time, like really a lot. So that's why I'm aware I could probably use way too much time to write tests for my frontend. I know it's not excuse to skip writing tests that's why I'm sorry I didn't make them - yes I know it only makes it worse for me.
-
-So, going to the things I did and why I did them the way they are currently.
-
-API - I'm aware my API is light years away from being REST, especially due to controllers. First of all I didn't write the usual CRUD, but I decided not to because I wasn't in need to have every Http method, that's why I decided to make it simplier. The same thing is with my repositories - I made methods only for the things I needed. Going back to controllers - my ShoppingCartController and VehicleController are chaotic even if there are not many methods. Well the problem is I'm returning 2 different data types (VehicleViewModel and Vehicle) in VehicleController and I'm aware of it. I just thought that instead of doing second Controller that would have injected vehicleRepository it'd be better for simplicity to have both the methods in one controller, yet I'm aware that in bussiness project it is a no-go. The situation with ShoppingCartController is somehow not precise for me. I mean I didn't know if I should do new Controller for the AddItemToShoppingCart method, because the name is related to shopping cart, yet I'm just adding ShoppingItem through its repository so I could as well just write ShoppingItemController. Right now I think it could be better this way, but I have to finish this README and commit last time.
-
-Shared - I have seen this let's say pattern of using Shared project for data, and I like it that's why I used it here, even if I don't have much classes there and most of my services are in API project. At one point I think it become redundant in my solution and I could just dump all the data into API, but I left it anyway.
-
-Authentication - I found a tutorial on youtube for React.js with c# backend and I followed it thoroughly to implement it in my project. I am aware of ASP.NET Core Identity but I didn't want to try it - I felt that I'd lose even more time trying this, because of the razor pages, my first 'real' experience in React and other things, yet I'd like to know if it's possible to do React frontend while having ASP.NET Core Identity. Also I have used cookies for the first time - except some problems that they caused for me it was a nice experience.
-
-
-My frontend... As I mentioned it was my first react app, so I had to learn a lot during this app which I appreciate. The knowledge I gained through writing this app for you is way better than tens of courses all together. Anyway my frontend is really weak, especially when it comes to appearance. I don't know what should I think about my code, I think it's inconsistent in various places but I feel like I lack skills to make it better at this moment. I really don't know if this code is acceptable, so I'd like to ask you for a feedback. Well I don't have much more to say and considering everything I'm rather satisfied with the outcome as for my first react even though I know it could be a loooot better.
-
-I think I gave it my best and I can't really complain. Even if I got rejected I have to say I had so much fun (even if I was at brink of breaking when my fetch was not working) while writing this app and i learned a lot, so I want to thank you for the opportunity you gave me. If you endured until the end I want to thank you for this as well.
-
-I hope I'll have occasion to talk with you on the interview. Stay healthy!
+Technologies/Languages/Frameworks used: C#, .NET Core, EF Core, React, BCrypt, JWT, Cookies, XUnit
